@@ -22,7 +22,7 @@ public class RequestingPage extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_requesting_page);
-        paymentrequest = Main2Activity.friendsrequesting;
+        paymentrequest = SelectFriendActivity.friendsrequesting;
         for(String i: paymentrequest.keySet()){
             friendsselected.add(i+ "     " + paymentrequest.get(i).toString());
         }

@@ -12,7 +12,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
-public class DialogBox extends DialogFragment {
+public class DialogBox2 extends DialogFragment {
     public ArrayList<Integer> mSelectedItems;
     public static ArrayList friendlist ;
     public ArrayList temp;
@@ -20,7 +20,7 @@ public class DialogBox extends DialogFragment {
     boolean[] ischecked;
     //public ArrayList friendsselected;
 
-    public DialogBox() {
+    public DialogBox2() {
         mSelectedItems = new ArrayList<>();
         friendlist = new ArrayList();
         friendlist.add("Dorette");
@@ -69,10 +69,11 @@ public class DialogBox extends DialogFragment {
                         friendsselected.addAll(temp);
                         System.out.println(friendsselected.toString());
                         System.out.println("TEMP " + temp.toString());
-                       //intent.putExtra("value",friendsselected );
 
-                        Intent intent = new Intent(getContext(),Main2Activity.class);
-                        startActivity(intent);
+                       //intent.putExtra("value",friendsselected );
+                       // getActivity().finish();
+                        //Intent intent = new Intent(getContext(),Main2Activity.class);
+                       // startActivity(intent);
 
 
 

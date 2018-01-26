@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
@@ -38,13 +39,13 @@ public class Main2Activity extends AppCompatActivity {
 
     ArrayList<String> textArray = new ArrayList<>();
     Button selectfriends;
-    ArrayList mSelectedItems;
     HashMap<String, Double> friendspayment;
     public static HashMap<String, Double> friendsrequesting;
+    ArrayList<Integer> mSelectedItems = new ArrayList<>();
+    ArrayList friendlist = new ArrayList();
+    ArrayList temp = new ArrayList();
+    ArrayList<String> friendsselected = new ArrayList<>();
     //taken from dialog
-    ArrayList<String> friendsselected;
-
-
     @RequiresApi(api = Build.VERSION_CODES.N)
     @SuppressLint("ResourceType")
     @Override
@@ -54,6 +55,8 @@ public class Main2Activity extends AppCompatActivity {
         LinearLayout linearLayout = new LinearLayout(this);
         setContentView(linearLayout);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
+        TextView friendsnames = new TextView(this);
+
         TextView title = new TextView(this);
         title.setText("Food Buddies");
         title.setGravity(Gravity.CENTER);
@@ -70,14 +73,12 @@ public class Main2Activity extends AppCompatActivity {
         friendsselected.add("Dorette");
 
 
-
         for (int i = 0; i < textArray.size(); i++) {
             TextView textView = new TextView(this);
             textView.setText(textArray.get(i));
             textView.setPadding(20, 0, 20, 20);
             textView.setTextSize(13);
             textView.setId(1000);
-            final TextView friendsnames = new TextView(this);
 
             RelativeLayout relativelayout = new RelativeLayout(this);
             RelativeLayout.LayoutParams relativeParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -88,12 +89,12 @@ public class Main2Activity extends AppCompatActivity {
             selectfriends.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    DialogBox dialog = new DialogBox();
-                    android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-                    dialog.show(fragmentManager, "dialogbox");
+                    DialogBox().show();
+                    //friendsnames.setText(dialog.friendsselected.toString());
                     //System.out.println("FRIENDSELECTED" + dialog.friendsselected.toString());
                 }
             });
+
             RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
             relativelayout.addView(selectfriends, lp);
             lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
@@ -112,7 +113,7 @@ public class Main2Activity extends AppCompatActivity {
                 } else if (friendsrequesting.containsKey(k)) {
                     Double initialprice = friendsrequesting.get(k);
                     friendsrequesting.remove(k);
-                    friendsrequesting.put(k, (double) Math.round((initialprice+price/friendsselected.size())*100.0/100.0));
+                    friendsrequesting.put(k, (double) Math.round((initialprice + price / friendsselected.size()) * 100.0 / 100.0));
                 }
             }
             System.out.println("FRIENDSPAYMENT" + friendsrequesting.toString());
@@ -176,4 +177,65 @@ public class Main2Activity extends AppCompatActivity {
 
     }
 
+
+    protected Dialog DialogBox() {
+        // for(int i = 0 ; i < friendlist.size() ; i++){
+        //     ischecked[i] = false;}
+        //String[] friendlist = getResources().getStringArray(R.array.friendlist);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle(R.string.selectfriends);
+        // Specify the list array, the items to be selected by default (null for none),
+        // and the listener through which to receive callbacks when items are selected
+        builder.setMultiChoiceItems((CharSequence[]) friendlist.toArray(new CharSequence[friendlist.size()]), null,
+                new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which,
+                                        boolean isChecked) {
+                        if (isChecked) {
+                            // If the user checked the item, add it to the selected items
+                            mSelectedItems.add(which);
+                            temp.add(friendlist.get(which));
+
+                        } else if (mSelectedItems.contains(which)) {
+                            // Else, if the item is already in the array, remove it
+                            mSelectedItems.remove(Integer.valueOf(which));
+                            temp.remove(friendlist.get(which));
+                        }
+                    }
+                })
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        friendsselected.clear();
+                        friendsselected.addAll(temp);
+                        //friendsnames.s
+                        //
+                        // etText(friendsselected.toString());
+                        System.out.println(friendsselected.toString());
+                        System.out.println("TEMP " + temp.toString());
+
+                        //intent.putExtra("value",friendsselected );
+                        // getActivity().finish();
+                        //Intent intent = new Intent(getContext(),Main2Activity.class);
+                        // startActivity(intent);
+
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                })
+                .show();
+        return builder.create();
+    }
+
+
+
 }
+
+
