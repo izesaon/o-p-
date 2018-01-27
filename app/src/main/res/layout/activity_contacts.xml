@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_example"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    android:orientation="vertical">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="#80000000">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:fontFamily="@font/pacifico"
+            android:gravity="center"
+            android:text="Select Food Buddies"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="24dp" />
+
+    </FrameLayout>
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_marginTop="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:background="@drawable/transparentbutton"
+        android:fontFamily="@font/geosanslight"
+        android:gravity="center"
+        android:onClick="pickContact"
+        android:text="Add Contact"
+        android:textColor="@android:color/white"
+        android:textSize="16dp"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/continuecontacts"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="30dp"
+        android:layout_width="120dp"
+        android:layout_marginBottom="20dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/transparentbutton"
+        android:fontFamily="@font/geosanslight"
+        android:gravity="center"
+        android:text="Next"
+        android:textColor="@android:color/white"
+        android:textSize="16dp"
+        android:visibility="invisible" />
+    </android.support.constraint.ConstraintLayout>
+
+
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <ImageView
+            android:id="@+id/imagegroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="60dp"
+            android:src="@drawable/ic_group_add_black_24dp"/>
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/transparentbutton"
+            android:onClick="pickContact"
+            android:text="Add Contact"
+            android:gravity="center"
+            android:layout_marginTop="30dp"
+            android:textSize="20dp"
+            android:fontFamily="@font/geosanslight"
+            android:layout_gravity="center"
+            android:textColor="@android:color/white" />
+    </FrameLayout>
+
+
+</LinearLayout>

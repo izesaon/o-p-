@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="60dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="20dp"
+        android:textSize="14sp"
+        android:fontFamily="@font/geosanslight"
+        android:id="@+id/name"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:visibility="invisible"
+        android:paddingRight="20dp"
+        android:textSize="14sp"
+        android:fontFamily="@font/geosanslight"
+        android:id="@+id/contact"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="20dp"
+        android:textSize="14sp"
+        android:id="@+id/owed"
+        android:fontFamily="@font/geosanslight"
+        />
+
+
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/clickToPay"
+        android:background="@drawable/transparentbutton"
+        android:src="@drawable/ic_call_made_black_24dp"></ImageButton>
+
+</LinearLayout>

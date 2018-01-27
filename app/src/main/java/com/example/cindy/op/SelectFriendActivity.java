@@ -3,6 +3,10 @@ package com.example.cindy.op;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,6 +24,8 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Array;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -27,6 +33,7 @@ import java.util.Iterator;
 public class SelectFriendActivity extends AppCompatActivity {
 
     private LinearLayout parentLinearLayout;
+    Typeface face;
 
     ArrayList<Integer> mSelectedItems;
     ArrayList<String> foodItems = new ArrayList<>();
@@ -39,24 +46,28 @@ public class SelectFriendActivity extends AppCompatActivity {
     ArrayList<String> savedfood = new ArrayList<>();
     int savednumber = 0;
     ArrayList<String> friendpast = new ArrayList<>();
+    LinearLayout friendslist;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_friend);
+        face = ResourcesCompat.getFont(this, R.font.geosanslight);
 
         String myJsonData = readTxt(R.raw.receipts);
         parseJson(myJsonData);
         Log.i("JW", friendsPayment.toString() + "DICTIONARY");
-        friendlist.add("Dorette");
-        friendlist.add("Jia Wen");
+        friendlist=ContactsActivity.contact_name_list;
         friendsrequesting = new HashMap<>();
-        parentLinearLayout = (LinearLayout) findViewById(R.id.selectfriend);
+        parentLinearLayout = (LinearLayout) findViewById(R.id.selectedfriendslist);
+
+
+
 
         for (int i = 0; i < foodItems.size(); i++) {
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            final View rowView = inflater.inflate(R.layout.food_item, null);
+            final View rowView = inflater.inflate(R.layout.selectfriends2, null);
             // Add the new row before the add field button.
             TextView textView1 = (TextView) rowView.findViewById(R.id.food_name);
             textView1.setText(foodItems.get(i));
@@ -64,10 +75,7 @@ public class SelectFriendActivity extends AppCompatActivity {
         }
 
         Button continuebutton = new Button(this);
-        continuebutton.setText("Continue");
-        continuebutton.setId(R.id.continuebutton);
-        parentLinearLayout.addView(continuebutton);
-
+        continuebutton = findViewById(R.id.continuebutton);
         //move to new activity
         continuebutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +96,7 @@ public class SelectFriendActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(SelectFriendActivity.this);
 
         // set the dialog title
+
         builder.setTitle("Choose One or More")
 
                 // specify the list array, the items to be selected by default (null for none),
@@ -131,39 +140,57 @@ public class SelectFriendActivity extends AppCompatActivity {
 
                         Log.i("JW", "Selected index: " + selectedIndex);
 
-                        TextView textView1 = (TextView) rowView.findViewById(R.id.selected_friends);
-                        textView1.setText(selectedIndex);
+                        LinearLayout ll = (LinearLayout) rowView.getParent();
+
+                        TextView textView1 = (TextView) ll.findViewById(R.id.selected_friends);
+                        //textView1.setText(selectedIndex);
+                        friendslist = ll.findViewById(R.id.linearlayout);
+                        friendslist.removeAllViews();
+
+                        for (int i = 0; i < friendsselected.size(); i++) {
+                            LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                            final View selectedfriendsview = inflater.inflate(R.layout.selectedfriendslist, null);
+                            // Add the new row before the add field button.
+                            TextView friendsname = (TextView) selectedfriendsview.findViewById(R.id.friendname);
+                            friendsname.setText(friendsselected.get(i));
+                            friendsname.setTypeface(face);
+                            friendslist.addView(selectedfriendsview, friendslist.getChildCount() - 1);
+                        }
+
                         TextView nameprice = (TextView) rowView.findViewById(R.id.food_name);
                         String[] namepricelist = nameprice.getText().toString().split("-");
-                        System.out.println(nameprice.getText().toString()+"food name");
+                        System.out.println(nameprice.getText().toString() + "food name");
                         String name = namepricelist[0];
                         Double price = Double.parseDouble(namepricelist[1]);
                         for (String k : friendsselected) {
                             if (friendsrequesting.containsKey(k) == false) {
-                                friendsrequesting.put((String) k, price / friendsselected.size());
+                                friendsrequesting.put((String) k, round(price / friendsselected.size(),2));
                             } else if (friendsrequesting.containsKey(k)) {
                                 Double initialprice = friendsrequesting.get(k);
                                 friendsrequesting.remove(k);
-                                friendsrequesting.put(k, (double) Math.round((initialprice + price / friendsselected.size())));
+                                friendsrequesting.put(k, (double) round(initialprice + price / friendsselected.size(),2));
+
                             }
                         }
+                        System.out.println("FRIENDSREQUESTING" + friendsrequesting.toString());
 
-                        if (savedfood.contains(name)){
-                            for (String k: friendpast){
+                        if (savedfood.contains(name)) {
+                            for (String k : friendpast) {
                                 Double initialprice = friendsrequesting.get(k);
                                 friendsrequesting.remove(k);
-                                friendsrequesting.put(k, (double) Math.round(initialprice - price/friendpast.size()));
+                                friendsrequesting.put(k, (double) round(initialprice - price / friendpast.size(),2));
                             }
                             System.out.println("friendspast" + friendpast);
                         }
 
 
-                        if(!savedfood.contains(name)){
-                        savedfood.add(name);}
+                        if (!savedfood.contains(name)) {
+                            savedfood.add(name);
+                        }
 
                         friendpast.clear();
                         friendpast.addAll(friendsselected);
-                        savednumber= friendpast.size();
+                        savednumber = friendpast.size();
 
                         System.out.println(friendsrequesting + "FRIENDS REQUEST");
 
@@ -185,6 +212,13 @@ public class SelectFriendActivity extends AppCompatActivity {
 
                         show();
 
+    }
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 
     private String readTxt(int resource) {

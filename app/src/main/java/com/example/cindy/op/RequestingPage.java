@@ -1,8 +1,11 @@
 package com.example.cindy.op;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -15,6 +18,9 @@ import java.util.HashMap;
 public class RequestingPage extends AppCompatActivity {
     ArrayList<String> friendsselected;
     HashMap<String, Double > paymentrequest;
+    LinearLayout linearLayout;
+    Button continuebutton;
+    Button requestbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,21 +30,46 @@ public class RequestingPage extends AppCompatActivity {
         setContentView(R.layout.activity_requesting_page);
         paymentrequest = SelectFriendActivity.friendsrequesting;
         for(String i: paymentrequest.keySet()){
-            friendsselected.add(i+ "     " + paymentrequest.get(i).toString());
-        }
-        System.out.println(paymentrequest.toString()+"PAYMENTREQUEST");
+            friendsselected.add(i);
+           // friendsselected.add(i+ "     " + paymentrequest.get(i).toString());
 
-        LinearLayout linearLayout = new LinearLayout(this);
-        setContentView(linearLayout);
-        linearLayout.setOrientation(LinearLayout.VERTICAL);
-        TextView title = new TextView(this);
-        title.setText("Send Requests");
-        title.setGravity(Gravity.CENTER);
-        title.setTextSize(30);
-        title.setPadding(0, 30, 0, 30);
-        linearLayout.addView(title);
+        }
+        continuebutton = new Button(this);
+        requestbutton = new Button(this);
+
+        System.out.println(paymentrequest.toString()+"PAYMENTREQUEST");
+        linearLayout = findViewById(R.id.requestinglinear);
+        continuebutton = findViewById(R.id.continuingrequest);
+
+      continuebutton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), LoginScreen.class);
+                startActivity(intent);
+            }
+        });
 
         for (int i = 0; i < friendsselected.size(); i++) {
+
+            LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            final View requestlist = inflater.inflate(R.layout.requestinglist, null);
+            // Add the new row before the add field button.
+            TextView friendsname = (TextView) requestlist.findViewById(R.id.requestfriend);
+            friendsname.setText(friendsselected.get(i));
+
+            TextView price = (TextView) requestlist.findViewById(R.id.price);
+            price.setText(paymentrequest.get(friendsselected.get(i)).toString());
+            linearLayout.addView(requestlist, linearLayout.getChildCount() - 1);
+            requestbutton = requestlist.findViewById(R.id.requestbutton);
+            requestbutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
+
+            /*
             TextView textView = new TextView(this);
             textView.setText(friendsselected.get(i));
             textView.setPadding(20, 0, 20, 20);
@@ -59,7 +90,7 @@ public class RequestingPage extends AppCompatActivity {
             relativelayout.addView(request, lp);
             lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
             linearLayout.addView(relativelayout);
-
+            */
         }
 
 
