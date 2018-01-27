@@ -29,11 +29,11 @@ public class PreviewPayActivity extends AppCompatActivity {
 
         final String name = intent.getStringExtra(RecyclerViewHolders.KEY_PAYEENAME);
         nameView = (TextView)findViewById(R.id.nametext);
-        nameView.setText(name);
+        nameView.setText(name.toUpperCase());
 
         final String amount = intent.getStringExtra(RecyclerViewHolders.KEY_PAYEEOWED);
         amountView = (TextView)findViewById(R.id.amounttext);
-        amountView.setText(amount);
+        amountView.setText("$" + amount);
 
         final String contact = intent.getStringExtra(RecyclerViewHolders.KEY_PAYEECONTACT);
 
