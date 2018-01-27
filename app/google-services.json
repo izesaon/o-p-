@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "336444696825",
+    "firebase_url": "https://hello-4b1e4.firebaseio.com",
+    "project_id": "hello-4b1e4",
+    "storage_bucket": "hello-4b1e4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:336444696825:android:4aced9d79fc7fd31",
+        "android_client_info": {
+          "package_name": "com.example.cindy.op"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "336444696825-kh1sadlqnps5ec2msilidl4fmj7gooin.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "336444696825-pgnvvc633v1jfu2ce503ijilobbmg0ap.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDNYP6EFEo_RhhWkVVf6SaC2OUmlxxUnI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
