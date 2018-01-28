@@ -96,7 +96,11 @@ public class RequestingPage extends AppCompatActivity {
                     mDatabase.child(owedMe).child(currentPhone).setValue(toBeAdded);
                     if(((LinearLayout) rowView).getChildCount() > 0)
                         ((LinearLayout) rowView).removeAllViews();
-
+                    int index = ContactsActivity.contact_number_list.indexOf(owedMe);
+                    ContactsActivity.contact_number_list.remove(owedMe);
+                    String name = ContactsActivity.contact_name_list.get(index);
+                    ContactsActivity.contact_name_list.remove(index);
+                    ContactsActivity.contact_name_hash.remove(name);
                 }
             });
 

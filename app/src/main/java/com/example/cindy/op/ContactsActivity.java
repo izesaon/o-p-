@@ -65,6 +65,7 @@ import android.widget.LinearLayout.LayoutParams;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -210,12 +211,27 @@ public class ContactsActivity extends AppCompatActivity {
 
     public void onDelete(View v) {
         View rowView = (View) v.getParent();
-//        TextView textView1 = (TextView) rowView.findViewById(R.id.contact_name);
-//        String name = textView1.getText().toString();
-//        int index = contact_name_list.indexOf(name);
-//        contact_name_list.remove(index);
-//        contact_number_list.remove(index);
-//        Log.i("JW", "the contact name deleted is " + name + " at index " + index);
+       TextView textView1 = (TextView) rowView.findViewById(R.id.contact_name);
+       String name = textView1.getText().toString();
+        int index = contact_name_list.indexOf(name);
+        contact_name_list.remove(index);
+        contact_number_list.remove(index);
+        contact_name_hash.remove(name);
+
+
+        Log.i("JW", "the contact name deleted is " + name + " at index " + index);
+
+
+       /* TextView contactname = new TextView(rowView.getContext());
+        contactname = rowView.findViewById(R.id.contact_name);
+        String contactnamestring = contactname.getText().toString();
+        System.out.println(contactnamestring +"contactnamestring");
+        contact_name_list.remove(contactnamestring);
+        int i = contact_name_list.indexOf(contactnamestring);
+        contact_number_list.remove(i);
+        contact_name_hash.remove(contactnamestring);*/
+
+
         parentLinearLayout.removeView((View) v.getParent());
     }
 
