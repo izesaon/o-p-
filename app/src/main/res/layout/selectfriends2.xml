@@ -6,7 +6,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="50dp"
         android:orientation="horizontal">
 
         <TextView
@@ -14,20 +14,20 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="5"
+
             android:fontFamily="@font/ralewayregular"
             android:paddingLeft="30dp"
-            android:paddingTop="20dp"
+            android:paddingTop="15dp"
             android:textColor="@android:color/white"
-            android:textSize="20dp" />
+            android:textSize="16dp" />
 
         <Button
             android:id="@+id/delete_button"
             android:layout_width="50dp"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
+
             android:background="@drawable/transparentbutton"
             android:fontFamily="@font/geosanslight"
             android:onClick="pickFriend"
@@ -48,8 +48,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="5"
         android:fontFamily="@font/geosanslight"
-        android:paddingLeft="30dp"
-        android:paddingTop="30dp"
         android:textColor="@android:color/white"
         android:textSize="14dp" />
 

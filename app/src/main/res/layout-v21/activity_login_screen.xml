@@ -64,6 +64,8 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/transparentbutton"
         android:fontFamily="@font/geosanslight"
+        android:maxLines="1"
+        android:paddingLeft="10dp"
         app:layout_constraintLeft_toLeftOf="@id/userid"
         app:layout_constraintTop_toBottomOf="@id/userid" />
 
@@ -82,39 +84,27 @@
         android:id="@+id/passwordedittext"
         android:layout_width="330dp"
         android:layout_height="30dp"
+        android:layout_marginLeft="12dp"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="16dp"
         android:background="@drawable/transparentbutton"
+
         android:fontFamily="@font/geosanslight"
+        android:inputType="number"
+        android:maxLines="1"
+        android:padding="5dp"
+        android:paddingLeft="10dp"
         app:layout_constraintLeft_toLeftOf="@id/password"
         app:layout_constraintTop_toBottomOf="@id/password" />
 
     <Button
-        android:id="@+id/ioubutton"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/transparentbutton"
-        android:fontFamily="@font/geosanslight"
-        android:gravity="center"
-
-        android:text="I.O.U"
-        android:textColor="@color/beige"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
-    <Button
-        android:id="@+id/uombutton"
-        android:layout_width="150dp"
+        android:id="@+id/login"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/transparentbutton"
         android:fontFamily="@font/geosanslight"
-        android:gravity="center"
-       android:layout_marginBottom="20dp"
-        android:layout_marginLeft="20dp"
-        android:text="U.O.M"
-        android:textColor="@android:color/white"
+        android:text="LOG IN"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"/>
 </android.support.constraint.ConstraintLayout>

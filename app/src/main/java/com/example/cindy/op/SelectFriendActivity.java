@@ -47,16 +47,25 @@ public class SelectFriendActivity extends AppCompatActivity {
     int savednumber = 0;
     ArrayList<String> friendpast = new ArrayList<>();
     LinearLayout friendslist;
+    String foodjson;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_friend);
         face = ResourcesCompat.getFont(this, R.font.geosanslight);
+        String myJsonData = ContactsActivity.foodjson;
 
-        String myJsonData = readTxt(R.raw.receipts);
-        parseJson(myJsonData);
+      //  String myJsonData = getIntent().getExtras().getString("foodjson");
+        System.out.println("myJSON"+myJsonData);
+
+        //String jsonlist = readTxt(R.raw.receipts);
+        try{parseJson(myJsonData);}
+        catch (Exception e){
+            e.printStackTrace();
+        }
         Log.i("JW", friendsPayment.toString() + "DICTIONARY");
         friendlist=ContactsActivity.contact_name_list;
         friendsrequesting = new HashMap<>();
@@ -249,7 +258,8 @@ public class SelectFriendActivity extends AppCompatActivity {
             while (keys.hasNext()) {
                 String key = (String) keys.next();
                 foodItems.add(key + " - " + jsonObject.get(key));
-                friendsPayment.put(key, (Double) jsonObject.get(key));
+                String value = (String)jsonObject.get(key);
+                friendsPayment.put(key, (Double) Double.parseDouble(value));
               /*  if (jsonObject.get(key) instanceof JSONObject) {
                     textArray.add(key + " - " + jsonObject.get(key));
                 }*/

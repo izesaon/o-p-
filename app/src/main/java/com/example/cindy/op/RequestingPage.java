@@ -2,8 +2,10 @@ package com.example.cindy.op;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,9 +27,16 @@ public class RequestingPage extends AppCompatActivity {
     Button continuebutton;
     Button requestbutton;
 
+    String firebaseURL;
+    DatabaseReference mDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         friendsselected = new ArrayList<>();
+
+        firebaseURL = "https://osps-2b8fa.firebaseio.com/";
+        mDatabase = FirebaseDatabase.getInstance().getReferenceFromUrl(firebaseURL);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_requesting_page);
@@ -37,6 +49,7 @@ public class RequestingPage extends AppCompatActivity {
         continuebutton = new Button(this);
         requestbutton = new Button(this);
 
+
         System.out.println(paymentrequest.toString()+"PAYMENTREQUEST");
         linearLayout = findViewById(R.id.requestinglinear);
         continuebutton = findViewById(R.id.continuingrequest);
@@ -45,8 +58,9 @@ public class RequestingPage extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), LoginScreen.class);
+                Intent intent = new Intent(view.getContext(), OptionsPage.class);
                 startActivity(intent);
+
             }
         });
 
@@ -62,9 +76,26 @@ public class RequestingPage extends AppCompatActivity {
             price.setText(paymentrequest.get(friendsselected.get(i)).toString());
             linearLayout.addView(requestlist, linearLayout.getChildCount() - 1);
             requestbutton = requestlist.findViewById(R.id.requestbutton);
+            final LinearLayout rowView = (LinearLayout) requestbutton.getParent();
+
+
+            SharedPreferences sharedPref = this.getSharedPreferences("LOGIN", MODE_PRIVATE);
+            String currentName = sharedPref.getString("name", null);
+            final String currentPhone = sharedPref.getString("phone", null);
+            double currentOwed = Double.parseDouble(paymentrequest.get(friendsselected.get(i)).toString());
+            final People toBeAdded = new People(currentOwed, currentName, currentPhone);
+
+            final String owedMe = ContactsActivity.contact_name_hash.get(friendsselected.get(i));
+
             requestbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Log.i("owedme", owedMe);
+                    Log.i("currentphone", currentPhone);
+                    Log.i("tobeadded", toBeAdded.toString());
+                    mDatabase.child(owedMe).child(currentPhone).setValue(toBeAdded);
+                    if(((LinearLayout) rowView).getChildCount() > 0)
+                        ((LinearLayout) rowView).removeAllViews();
 
                 }
             });

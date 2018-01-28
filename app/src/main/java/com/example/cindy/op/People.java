@@ -7,13 +7,13 @@ package com.example.cindy.op;
 public class People {
     public double amount;
     public String name;
-    public int contact;
+    public String contact;
 
     public People(){
         //Default constructor required for calls to DataSnapshot.getValue(People.class)
     }
 
-    public People(double amount, String name, int contact){
+    public People(double amount, String name, String contact){
         this.amount = amount;
         this.name = name;
         this.contact = contact;
@@ -27,7 +27,7 @@ public class People {
         return name;
     }
 
-    public int getContact() {
+    public String getContact() {
         return contact;
     }
 

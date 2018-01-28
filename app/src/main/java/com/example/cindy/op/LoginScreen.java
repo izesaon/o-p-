@@ -9,44 +9,49 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class LoginScreen extends AppCompatActivity {
+    Button loginbutton;
+
+    String useridstring;
+    String passwordstring;
+
+    EditText userid;
+    EditText password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Button ioubutton = new Button(this);
-        Button uombutton = new Button(this);
-        EditText userid = new EditText(this);
-        EditText password= new EditText(this);
+        loginbutton = new Button(this);
+        userid = new EditText(this);
+        password= new EditText(this);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_screen);
-        ioubutton = (Button) findViewById(R.id.ioubutton);
-        uombutton = (Button) findViewById(R.id.uombutton);
+        loginbutton = (Button) findViewById(R.id.login);
+
         userid = findViewById(R.id.useridedittext);
         password = findViewById(R.id.passwordedittext);
-        String useridstring = userid.getText().toString();
-
-        SharedPreferences sharedPref = getSharedPreferences("LOGIN", MODE_PRIVATE);
-        SharedPreferences.Editor editor= sharedPref.edit();
-        editor.putString("name", "dorette");
-        editor.putString("phone", "82880222");
-        editor.commit();
 
 
-        ioubutton.setOnClickListener(new View.OnClickListener() {
+
+
+
+        loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), SelectWhoToPayActivity.class);
+                useridstring = userid.getText().toString();
+                passwordstring = password.getText().toString();
+
+                SharedPreferences sharedPref = getSharedPreferences("LOGIN", MODE_PRIVATE);
+                SharedPreferences.Editor editor= sharedPref.edit();
+                editor.putString("name", useridstring);
+                editor.putString("phone", passwordstring);
+                editor.commit();
+
+                Intent intent = new Intent(view.getContext(), OptionsPage.class);
                 startActivity(intent);
             }
         });
-        uombutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ContactsActivity.class);
-                startActivity(intent);
 
-            }
-        });
 
 
     }

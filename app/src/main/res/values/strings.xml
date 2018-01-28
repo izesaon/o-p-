@@ -6,6 +6,8 @@
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
     <string name="selectfriends">Select Friends</string>
+    <string name="i_o_u">I.O.U</string>
+    <string name="u_o_m">U.O.M</string>
 
 
 </resources>

@@ -4,12 +4,17 @@ package com.example.cindy.op;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONObject;
 
@@ -30,6 +35,9 @@ public class WaitTransactionActivity extends AppCompatActivity {
 
     final String accessCode = "ca05df5c478c02241a11a6288aa505b7";
 
+    String firebaseURL;
+    DatabaseReference mDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +49,9 @@ public class WaitTransactionActivity extends AppCompatActivity {
         contact = intent.getStringExtra(RecyclerViewHolders.KEY_PAYEECONTACT);
 
         sandBoxUrl = "https://api.ocbc.com:8243/transactional/paynow/1.0/sendPayNowMoney";
+
+        firebaseURL = "https://osps-2b8fa.firebaseio.com/";;
+        mDatabase = FirebaseDatabase.getInstance().getReferenceFromUrl(firebaseURL);;
 
         GetResponse getResponse = new GetResponse(this);
         getResponse.execute(sandBoxUrl);
@@ -125,9 +136,24 @@ public class WaitTransactionActivity extends AppCompatActivity {
                 AlertDialog.Builder builder= new AlertDialog.Builder(context);
                 if (result.getString("Success").equalsIgnoreCase("true")){
                     builder.setMessage("Your transaction is successful! :D");
+                    builder.setNeutralButton("Return to Main Menu", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent intent = new Intent(context, OptionsPage.class);
+                            context.startActivity(intent);
+                        }
+                    });
+                    SharedPreferences sharedPref = context.getSharedPreferences("LOGIN", MODE_PRIVATE);
+                    String phone = sharedPref.getString("phone", null);
+                    mDatabase.child(phone).child(contact).removeValue();
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+
                 }
                 else{
                     builder.setMessage("Soemthing went wrong :(");
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
                 }
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();

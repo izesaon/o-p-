@@ -5,64 +5,104 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.yilong.a0sps_api.PreviewPayActivity">
+    android:background="@drawable/gradientrequest"
+    tools:context="com.example.cindy.op.PreviewPayActivity">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Review Transaction" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="#80000000">
 
         <TextView
-            android:id="@+id/nameword"
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:fontFamily="@font/pacifico"
+            android:gravity="center"
+            android:text="Review Transaction"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="24dp" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="left"
-            android:text="Paying To:" />
+            android:layout_gravity="center|top"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/nametext"
-            android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/imagegroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:src="@drawable/ic_send_white_150dp"/>
+
+            <TextView
+                android:id="@+id/nameword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/ralewayregular"
+                android:gravity="center"
+                android:text="Paying To:"
+                android:textSize="16dp"
+                android:layout_marginBottom="10dp" />
+
+            <TextView
+                android:id="@+id/nametext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/ralewayregular"
+                android:gravity="right"
+                android:text="name temp"
+                android:textSize="25dp"
+                android:layout_marginBottom="30dp" />
+
+            <TextView
+                android:id="@+id/amountword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/ralewayregular"
+                android:text="Total Amount:"
+                android:textSize="16dp"
+                android:layout_marginBottom="10dp" />
+
+            <TextView
+                android:id="@+id/amounttext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/ralewayregular"
+                android:text="$xx.xx"
+                android:textSize="30dp" />
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/confirm"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:gravity="right" />
+            android:layout_gravity="bottom|center"
+            android:background="@drawable/transparentbutton"
+            android:fontFamily="@font/geosanslight"
+            android:gravity="center"
+            android:text="Confirm"
+            android:textColor="@android:color/white"
+            android:textSize="20dp"
+            android:layout_marginBottom="35dp" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp">
-
-        <TextView
-            android:id="@+id/amountword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:text="Total Amount:" />
-
-        <TextView
-            android:id="@+id/amounttext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="right" />
-
-    </LinearLayout>
-
-
-    <Button
-        android:id="@+id/confirm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Confirm" />
-
-
+    </FrameLayout>
 
 </LinearLayout>

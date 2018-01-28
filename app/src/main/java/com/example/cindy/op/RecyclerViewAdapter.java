@@ -20,7 +20,7 @@ import java.util.List;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolders> {
     private List<People> peopleList;
     protected Context context;
-    Typeface font;
+
 
     public RecyclerViewAdapter(Context context, List<People> peopleList){
         this.peopleList = peopleList;
@@ -39,7 +39,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
 
     @Override
     public void onBindViewHolder(RecyclerViewHolders holder, int position) {
-        font = ResourcesCompat.getFont(context, R.font.geosanslight);
 
         holder.personName.setText(peopleList.get(position).name);
 
