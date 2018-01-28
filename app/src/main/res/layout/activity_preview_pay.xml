@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/gradientrequest"
+    android:background="@drawable/gradientlogin"
     tools:context="com.example.cindy.op.PreviewPayActivity">
 
     <FrameLayout

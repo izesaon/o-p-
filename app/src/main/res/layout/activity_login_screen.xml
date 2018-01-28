@@ -7,14 +7,6 @@
     tools:context="com.example.cindy.op.LoginScreen"
     android:backgroundTint="@android:color/black">
 
-    <ImageView
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/circle"
-        tools:layout_editor_absoluteX="92dp"
-        tools:layout_editor_absoluteY="140dp" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

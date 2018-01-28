@@ -135,7 +135,7 @@ public class WaitTransactionActivity extends AppCompatActivity {
                 JSONObject result = new JSONObject(s);
                 AlertDialog.Builder builder= new AlertDialog.Builder(context);
                 if (result.getString("Success").equalsIgnoreCase("true")){
-                    builder.setMessage("Your transaction is successful! :D");
+                    builder.setMessage("Your transaction is successful!");
                     builder.setNeutralButton("Return to Main Menu", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -151,7 +151,7 @@ public class WaitTransactionActivity extends AppCompatActivity {
 
                 }
                 else{
-                    builder.setMessage("Soemthing went wrong :(");
+                    builder.setMessage("Something went wrong.");
                     AlertDialog alertDialog = builder.create();
                     alertDialog.show();
                 }
