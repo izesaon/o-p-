@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:orientation="horizontal" >
+    <TextView
+        android:id="@+id/food_name"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:textSize="20dp"
+        android:paddingLeft="8dp"
+        android:paddingTop="8dp"
+        android:layout_weight="5"/>
+    <Button
+        android:id="@+id/delete_button"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:text="edit"
+        android:onClick="pickFriend"/>
+    <TextView
+        android:id="@+id/selected_friends"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:textSize="20dp"
+        android:paddingLeft="8dp"
+        android:paddingTop="8dp"
+        android:layout_weight="5"
+        android:fontFamily="@font/geosanslight"/>
+</LinearLayout>

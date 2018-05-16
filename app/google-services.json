@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "543014335583",
+    "firebase_url": "https://osps-2b8fa.firebaseio.com",
+    "project_id": "osps-2b8fa",
+    "storage_bucket": "osps-2b8fa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:543014335583:android:b1ea4e27ea7a3c97",
+        "android_client_info": {
+          "package_name": "com.example.cindy.op"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "543014335583-dcghla9q7tgglki5dkij677qot1d0spd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yilong.a0sps_api",
+            "certificate_hash": "bd3eeb5338d7d1ec42906989758f6569578c4dc5"
+          }
+        },
+        {
+          "client_id": "543014335583-0ua03e40tdenjhfv7so1krrg1e3sq0h4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlWTrlkvIlorbpxcWiIxPi6TCpHuRNPZA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "543014335583-0ua03e40tdenjhfv7so1krrg1e3sq0h4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

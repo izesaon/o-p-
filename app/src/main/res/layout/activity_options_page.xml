@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.cindy.op.OptionsPage"
+    android:background="@drawable/gradientiou">
+
+    <FrameLayout
+        android:id="@+id/sendrequestheader"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="#80000000">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:fontFamily="@font/pacifico"
+            android:gravity="center"
+            android:text="Select Option"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="24dp" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/uombutton"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="80dp"
+            android:background="@drawable/transparentbutton"
+
+            android:drawableTop="@drawable/ic_forward_black_24dp"
+            android:fontFamily="@font/geosanslight"
+
+            android:gravity="center"
+            android:paddingRight="5dp"
+            android:text="U.O.M"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <Button
+            android:id="@+id/ioubutton"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="80dp"
+            android:background="@drawable/transparentbutton"
+            android:drawableTop="@drawable/ic_reply_black_24dp"
+            android:fontFamily="@font/geosanslight"
+            android:gravity="center"
+
+            android:text="I.O.U"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+    </FrameLayout>
+</android.support.constraint.ConstraintLayout>

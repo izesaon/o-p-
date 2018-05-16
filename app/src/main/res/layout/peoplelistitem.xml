@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    >
+
+    <TextView
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="130dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/geosanslight"
+        android:id="@+id/name"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:visibility="invisible"
+        android:paddingRight="20dp"
+        android:textSize="14sp"
+        android:fontFamily="@font/geosanslight"
+        android:id="@+id/contact"/>
+
+    <TextView
+        android:layout_width="50dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/name"
+        android:textSize="16sp"
+        android:layout_marginLeft="25dp"
+        android:id="@+id/owed"
+        android:fontFamily="@font/geosanslight"
+        />
+
+
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_marginTop="20dp"
+
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="20dp"
+        android:id="@+id/clickToPay"
+        android:background="@drawable/transparentbutton"
+        android:src="@drawable/ic_call_made_black_24dp"></ImageButton>
+
+</android.support.constraint.ConstraintLayout>

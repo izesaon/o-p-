@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">o$p$</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="selectfriends">Select Friends</string>
+    <string name="i_o_u">I.O.U</string>
+    <string name="u_o_m">U.O.M</string>
+
+
 </resources>
